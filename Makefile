@@ -7,7 +7,7 @@ lint:
 	pylint --disable=R,C,W1203 *.py myLib/*.py
 test:
 	#test
-	python -m pytest -vv --cov=mylib test_logic.py
+	python -m pytest -vv --cov=myLib test_logic.py
 format: 
 	#format code
 	black *.py mylib/*.py

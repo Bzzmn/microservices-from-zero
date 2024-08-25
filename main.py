@@ -1,4 +1,4 @@
-from mylib.logic import wiki
+from myLib.logic import wiki
 
 result = wiki()
 print(result)
