@@ -1,0 +1,36 @@
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore build artifacts
+build/
+dist/
+node_modules/
+
+# Ignore environment files
+.env
+
+# Ignore logs
+logs/
+
+# Ignore package lock files
+package-lock.json
+yarn.lock
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python specific files
+*.pyc
+__pycache__/
+*.egg-info/
+venv/
