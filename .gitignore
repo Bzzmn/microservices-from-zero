@@ -33,4 +33,6 @@ Thumbs.db
 *.pyc
 __pycache__/
 *.egg-info/
+
+# Ignore Virtual Environment
 venv/
