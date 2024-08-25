@@ -10,6 +10,8 @@ test:
 format: 
 	#format code
 	black *.py myLib/*.py
+build:
+	#build container
 deploy:
 	#deploy
 all: install lint test deploy
