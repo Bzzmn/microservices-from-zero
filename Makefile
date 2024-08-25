@@ -10,7 +10,7 @@ test:
 	python -m pytest -vv --cov=myLib test_logic.py
 format: 
 	#format code
-	black *.py mylib/*.py
+	black *.py myLib/*.py
 build:
 	#build container
 deploy:
