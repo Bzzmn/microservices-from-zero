@@ -14,13 +14,13 @@ async def root():
 
 
 @app.get("/search/{name}")
-async def get_name(name: str):
+async def search(name: str):
     """Search for a wikipedia article by name"""
     return search_wiki(name)
 
 
 @app.get("/wiki/{name}")
-async def get_phrase(name: str):
+async def get_name(name: str):
     """Retrieve wikipedia page and return phrases"""
     result = search_name(name)
     return {"result": result}

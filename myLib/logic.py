@@ -1,5 +1,10 @@
 import wikipedia
 from textblob import TextBlob
+import nltk
+
+# Download the punkt tokenizer if not already present
+nltk.download('punkt_tab')
+
 
 
 def wiki(name="War Goddess", lenght=1):
