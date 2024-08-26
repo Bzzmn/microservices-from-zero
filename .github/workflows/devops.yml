@@ -12,6 +12,9 @@ jobs:
     - name: Install dependencies
       run:  | 
         make install
+    - name: Install aditional tools
+      run:  | 
+        make post-intall
     - name:  Lint with pylint
       run:  |
         make lint
