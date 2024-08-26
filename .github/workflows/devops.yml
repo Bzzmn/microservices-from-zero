@@ -14,7 +14,7 @@ jobs:
         make install
     - name: Install aditional tools
       run:  | 
-        make post-intall
+        make post-install
     - name:  Lint with pylint
       run:  |
         make lint
