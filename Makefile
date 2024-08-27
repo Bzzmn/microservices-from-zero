@@ -16,6 +16,13 @@ format:
 	black *.py myLib/*.py
 build:
 	#build container
+	docker build -t deploy-fastapi .
+run:
+	#run check if container exists and if so remove it then run container
+	@if [ $$(docker ps -a -q -f name=fastapi-wiki) ]; then \
+	docker rm -f fastapi-wiki; \
+	fi
+	docker run --name fastapi-wiki -p127.0.0.1:8080:8080 deploy-fastapi
 deploy:
 	#deploy
-all: install lint test deploy
+all: install lint test format 
