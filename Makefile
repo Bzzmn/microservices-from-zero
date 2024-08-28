@@ -16,8 +16,12 @@ format:
 	black *.py myLib/*.py
 build:
 	#build container
-	docker build -t myecr-repo . &&\
+	docker build -t myecr-repo .
+
+tag: 
+	#tag container
 	docker tag myecr-repo:latest 247181180961.dkr.ecr.sa-east-1.amazonaws.com/myecr-repo:latest
+
 run:
 	#run check if container exists and if so remove it then run container
 	@if [ $$(docker ps -a -q -f name=fastapi-wiki) ]; then \
