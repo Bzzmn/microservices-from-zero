@@ -50,12 +50,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::247181180961:role/ecr-crud
-        aws-region: sa-east-1
-
     - name: Log in to Amazon ECR
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -63,7 +57,7 @@ jobs:
       run: |
         aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 247181180961.dkr.ecr.sa-east-1.amazonaws.com
 
-    - name: Build and push Docker image
+    - name: Push Docker image
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
