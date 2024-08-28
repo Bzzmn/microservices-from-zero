@@ -37,10 +37,6 @@ jobs:
     - name: Format code
       run: |
         make format
-    
-    - name: Build the Docker image
-      run: |
-        make build
         
   deploy:
     needs: build  # Ensure deploy runs only after build is successful
@@ -56,6 +52,15 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin 247181180961.dkr.ecr.sa-east-1.amazonaws.com
+
+
+    - name: Build Docker image
+      run: |
+        docker build -t myecr-repo .
+
+    - name: Tag Docker image
+      run: |
+        docker tag myecr-repo:latest 247181180961.dkr.ecr.sa-east-1.amazonaws.com/myecr-repo:latest
 
     - name: Push Docker image
       run: |

@@ -14,13 +14,10 @@ test:
 format: 
 	#format code
 	black *.py myLib/*.py
+
 build:
 	#build container
-	docker build -t myecr-repo .
-
-tag: 
-	#tag container
-	docker tag myecr-repo:latest 247181180961.dkr.ecr.sa-east-1.amazonaws.com/myecr-repo:latest
+	docker build -t fastapi-wiki .
 
 run:
 	#run check if container exists and if so remove it then run container
