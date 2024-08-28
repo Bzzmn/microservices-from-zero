@@ -23,6 +23,5 @@ run:
 	docker rm -f fastapi-wiki; \
 	fi
 	docker run --name fastapi-wiki -p127.0.0.1:8080:8080 deploy-fastapi
-deploy:
-	#deploy
-all: install lint test format 
+
+all: install lint test format build run

@@ -1,30 +1,64 @@
-name: Python application test with Guthub Actions
-on: [push]
+name: Python application test with GitHub Actions
+
+on: 
+  push:
+    branches:
+      - main  # Only trigger on push to the main branch (optional)
+
 jobs: 
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    
     - name: Set up Python 3.12.5
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2  # Updated to the latest version
       with:
         python-version: 3.12.5
-    - name: Install dependencies
-      run:  | 
-        make install
-    - name: Install aditional tools
-      run:  | 
-        make post-install
-    - name:  Lint with pylint
-      run:  |
-        make lint
-    - name:  Test with pytest
-      run:  |
-        make test
-    - name: Format code
-      run:  |
-        make format
-    - name: Build the Docker image
-      run:  |
-        make build
     
+    - name: Install dependencies
+      run: |
+        make install
+    
+    - name: Install additional tools
+      run: |
+        make post-install
+    
+    - name: Lint with pylint
+      run: |
+        make lint
+    
+    - name: Test with pytest
+      run: |
+        make test
+    
+    - name: Format code
+      run: |
+        make format
+    
+    - name: Build the Docker image
+      run: |
+        make build
+        
+  deploy:
+    needs: build  # Ensure deploy runs only after build is successful
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::247181180961:role/ecr-crud
+        aws-region: us-west-2
+
+    - name: Log in to Amazon ECR
+      run: |
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${{ 247181180961 }}.dkr.ecr.us-west-2.amazonaws.com
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t ${{ 247181180961 }}.dkr.ecr.us-west-2.amazonaws.com/my-repository:latest .
+        docker push ${{ 247181180961 }}.dkr.ecr.us-west-2.amazonaws.com/my-repository:latest

@@ -36,3 +36,6 @@ __pycache__/
 
 # Ignore Virtual Environment
 venv/
+
+# Ignore pem files
+*.pem
