@@ -24,6 +24,6 @@ run:
 	@if [ $$(docker ps -a -q -f name=fastapi-wiki) ]; then \
 	docker rm -f fastapi-wiki; \
 	fi
-	docker run --name fastapi-wiki -p127.0.0.1:8080:8080 deploy-fastapi
+	docker run --name fastapi-wiki -p127.0.0.1:8080:8080 fastapi-wiki
 
 all: install lint test format build run
